@@ -3,20 +3,11 @@
     "incremental": true,
     "target": "ES2021",
     "module": "ESNext",
-    "lib": [],
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "./dist/",
     "strict": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "noImplicitReturns": true,
-    "noImplicitOverride": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     // "experimentalDecorators": true,
@@ -24,11 +15,5 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ]
+  "include": ["src/**/*"]
 }
