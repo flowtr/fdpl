@@ -1,6 +1,6 @@
+import { cd, nothrow, $ } from "zx";
 import { clone } from "./git.js";
 import { logger } from "./logger.js";
-import { run } from "./podman.js";
 
 export class DeploymentManager {
   containers: {
@@ -15,7 +15,7 @@ export class DeploymentManager {
   async up(args: { name: string; dir: string }) {
     cd(args.dir);
     logger.info("Building image", args.name);
-    await nothrow($`podman build --format docker --no-cache -t ${args.name} .`);
+    /*  await nothrow($`podman build --format docker --no-cache -t ${args.name} .`);
     logger.info("Deploying containers", [args.name].join(", "));
     const { id: containerId, status } = await run({
       image: args.name,
@@ -40,7 +40,7 @@ export class DeploymentManager {
   async down(args: { name: string }) {
     const deployment = this.containers.find((d) => d.name === args.name);
     if (!deployment) return logger.error("Deployment", args.name, "not found");
-    await nothrow($`podman rm ${deployment.containerId}`);
+    await nothrow($`podman rm ${deployment.containerId}`); */
   }
 
   async deploy(args: { repository: string; branch: string; name: string }) {
