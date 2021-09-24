@@ -1,5 +1,7 @@
 # @flowtr/ci-runner
 
+A Continuous integration runner made in Typescript and Fastify. Uses postgressql to manage a queue.
+
 ## Starting the Runner in Development
 
 First run the dependencies.
@@ -20,7 +22,7 @@ pnpm i
 pnpm run build && pnpm run start
 ```
 
-## API Docs
+## API Explorer
 
-Once you have this up and running you can browse the swagger api docs at
-`http://localhost:8989/documentation`.
+Once you have this up and running you can browse the graphql api studio at
+`http://localhost:8989/graphql`.
