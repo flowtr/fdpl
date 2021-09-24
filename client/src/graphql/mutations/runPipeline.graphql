@@ -1,0 +1,13 @@
+mutation CreatePipelineGit($pipeline: PipelineInput!) {
+  runPipeline(
+    pipeline: $pipeline
+  ) {
+    data {
+      name
+    }
+
+    job {
+      jobId
+    }
+  }
+}

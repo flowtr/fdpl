@@ -11,7 +11,6 @@ A hosting control panel written with Typescript, tinyhttp, & ESM.
 
 ## To Do
 
-- workerpool tasks for ci runners
-  - instead of waiting for the task to end before sending a response back to the user
 - Saving deployments to mongodb
 - Caddy api to expose deployments to the internet
+- Shared common package

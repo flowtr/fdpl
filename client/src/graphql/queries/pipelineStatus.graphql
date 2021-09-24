@@ -1,0 +1,6 @@
+query GetPipelineStatus($job: PipelineJobInput!) {
+  getPipelineStatus(job: $job) {
+    name
+    state
+  }
+}

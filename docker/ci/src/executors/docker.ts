@@ -1,6 +1,6 @@
 import PgBoss from "pg-boss";
 import { logger } from "../logger.js";
-import { IPipeline } from "../types.js";
+import { IPipeline } from "../util.js";
 import Docker from "dockerode";
 import { $, fs } from "zx";
 import { cd } from "zx";
@@ -18,7 +18,7 @@ export class DockerExecutor {
     if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
     this.processJob = this.processJob.bind(this);
     this.docker = new Docker({
-      socketPath: "/var/run/docker.sock",
+      socketPath: process.env.DOCKER_SOCK ?? "/var/run/docker.sock",
     });
   }
 
@@ -30,16 +30,16 @@ export class DockerExecutor {
     await $`rm -rf ${runnerDir}`;
     fs.mkdirSync(runnerDir, { recursive: true });
 
-    logger.info(`Cloning git repository ${pipeline.repo}`);
+    logger.info(`Cloning git repository ${pipeline.repository}`);
     await git.clone({
       dir: runnerDir,
-      url: pipeline.repo,
+      url: pipeline.repository,
       fs,
       http,
     });
 
     logger.info(
-      `Running pipeline ${pipeline.name} with preset ${pipeline.preset} and repository ${pipeline.repo}`
+      `Running pipeline ${pipeline.name} with preset ${pipeline.preset} and repository ${pipeline.repository}`
     );
 
     cd(runnerDir);

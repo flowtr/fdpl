@@ -7,4 +7,6 @@ WORKDIR /app
 COPY . .
 RUN pnpm i
 
+EXPOSE 8989
+
 CMD ["pnpm", "run", "start"]
