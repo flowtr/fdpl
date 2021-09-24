@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "@theoparis/config": {
+      "signature": "eb18430145483dbfaa6a2dd1628f2d14",
+      "file": true
+    }
+  }
+}

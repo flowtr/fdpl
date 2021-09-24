@@ -1,18 +1,44 @@
-import { Router } from "express";
-import { CIService } from "../../services/ci.js";
+import fp from "fastify-plugin";
+import { CIService, IPipeline } from "../../services/ci.js";
 
-export default async (): Promise<ReturnType<typeof Router>> => {
-  const app = Router();
-  app.post("/pipeline", async (req, res) => {
-    try {
+export default fp(async (app) => {
+  app.route<{
+    Body: {
+      pipeline: IPipeline;
+    };
+  }>({
+    method: "GET",
+    url: "/pipeline",
+    schema: {
+      response: {
+        200: {
+          type: "object",
+          required: ["output", "finishedIn"],
+          properties: {
+            finishedIn: {
+              type: "string",
+              format: "date-time",
+            },
+            output: {
+              type: "string",
+            },
+          },
+        },
+      },
+    },
+    handler: async (req, res) => {
       // TODO: background task, api request to fetch status
-      const output = await new CIService().runPipeline(req.body);
-      return res.status(200).json({
+      const start = Date.now();
+
+      const output = await new CIService().runPipeline(req.body.pipeline);
+      const stop = Date.now();
+
+      const timeTaken = stop - start / 1000;
+
+      return res.status(200).send({
         output: output,
+        finishedIn: timeTaken,
       });
-    } catch (error) {
-      return res.status(500).json({ error });
-    }
+    },
   });
-  return app;
-};
+});

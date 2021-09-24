@@ -7,4 +7,4 @@ WORKDIR /app
 COPY . .
 RUN pnpm i
 
-CMD ["node", "./src/index.js", "run"]
+CMD ["pnpm", "run", "start"]

@@ -63,8 +63,6 @@ export class CIService {
 
 export interface IPipeline {
   name: string;
-  do: {
-    preset: string;
-  };
+  preset: string;
   repo: string;
 }
